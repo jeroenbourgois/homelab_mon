@@ -9,7 +9,7 @@ defmodule HomelabMon.Application do
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
-      HomelabMon.Repo,
+      # HomelabMon.Repo,
       # Start the Telemetry supervisor
       HomelabMonWeb.Telemetry,
       # Start the PubSub system

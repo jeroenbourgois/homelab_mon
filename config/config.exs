@@ -7,8 +7,8 @@
 # General application configuration
 import Config
 
-config :homelab_mon,
-  ecto_repos: [HomelabMon.Repo]
+# config :homelab_mon,
+#   ecto_repos: [HomelabMon.Repo]
 
 # Configures the endpoint
 config :homelab_mon, HomelabMonWeb.Endpoint,
@@ -17,6 +17,10 @@ config :homelab_mon, HomelabMonWeb.Endpoint,
   pubsub_server: HomelabMon.PubSub,
   live_view: [signing_salt: "8hEwkRBb"]
 
+config :homelab_mon, :solar_edge,
+  api_key: System.get_env("SOLAR_EDGE_API_KEY"),
+  api_endpoint: "https://monitoringapi.solaredge.com"
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails
@@ -24,10 +28,11 @@ config :homelab_mon, HomelabMonWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :homelab_mon, HomelabMon.Mailer, adapter: Swoosh.Adapters.Local
+# config :homelab_mon, HomelabMon.Mailer, adapter: Swoosh.Adapters.Local
 
-# Swoosh API client is needed for adapters other than SMTP.
-config :swoosh, :api_client, false
+config :homelab_mon, HomelabMon.Mailer, 
+  adapter: Swoosh.Adapters.Sendgrid,
+  api_key: System.get_env("SENDGRID_API_KEY")
 
 # Configures Elixir's Logger
 config :logger, :console,

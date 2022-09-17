@@ -17,6 +17,7 @@ defmodule HomelabMonWeb.Router do
   scope "/", HomelabMonWeb do
     pipe_through :browser
 
+    get "/health", PageController, :health
     get "/", PageController, :index
   end
 

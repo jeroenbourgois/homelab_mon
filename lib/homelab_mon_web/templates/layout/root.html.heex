@@ -6,12 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= csrf_meta_tag() %>
     <%= live_title_tag assigns[:page_title] || "HomelabMon", suffix: " · Phoenix Framework" %>
-    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/style.css")}/>
   </head>
-  <body>
-    <header>
-    header
+  <body class="p-4">
+    <header class="flex justify-between border-b pb-2 mb-2">
+      <h1>HLM</h1>
+      <nav>
+        <ul class="flex">
+          <li class="flex items-center">☀️ <span class="bg-emerald-300 rounded-full inline-block -mt-1 w-4 h-4 ml-2">&nbsp;</span></li>
+        </ul>
+      </nav>
     </header>
     <%= @inner_content %>
+    <footer class="mt-4">
+      <p class="font-mono text-xs">homelab_mon v<%= Application.spec(:homelab_mon, :vsn) %></p>
+    </footer>
   </body>
 </html>
