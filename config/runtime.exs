@@ -79,7 +79,10 @@ if config_env() == :prod do
   config :homelab_mon, HomelabMon.Mailer, 
     adapter: Swoosh.Adapters.Sendgrid,
     api_key: System.get_env("SENDGRID_API_KEY")
-  #
+
+  config :homelab_mon, :solar_edge,
+    api_key: System.get_env("SOLAR_EDGE_API_KEY")
+  
   # For this example you need include a HTTP client required by Swoosh API client.
   # Swoosh supports Hackney and Finch out of the box:
   #

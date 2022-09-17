@@ -23,5 +23,7 @@ erl_crash.dump
 homelab_mon-*.tar
 
 node_modules
+docker-compose.yml
+config/docker.env
 
 .env
