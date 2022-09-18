@@ -40,17 +40,17 @@ if config_env() == :prod do
       You can generate one by calling: mix phx.gen.secret
       """
 
-  host = System.get_env("PHX_HOST") || "example.com"
+  host = System.get_env("HOST") || "localhost"
   port = String.to_integer(System.get_env("PORT") || "4000")
 
   config :homelab_mon, HomelabMonWeb.Endpoint,
-    url: [host: host, port: 443],
+    url: [host: host, port: port],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
       # See the documentation on https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html
       # for details about using IPv6 vs IPv4 and loopback vs public addresses.
-      ip: {0, 0, 0, 0, 0, 0, 0, 0},
+      # ip: {0, 0, 0, 0, 0, 0, 0, 0},
       port: port
     ],
     secret_key_base: secret_key_base
@@ -78,10 +78,11 @@ if config_env() == :prod do
   #
   config :homelab_mon, HomelabMon.Mailer, 
     adapter: Swoosh.Adapters.Sendgrid,
-    api_key: System.get_env("SENDGRID_API_KEY")
+    api_key: System.get_env("SENDGRID_API_KEY") || ""
 
-  config :homelab_mon, :solar_edge,
-    api_key: System.get_env("SOLAR_EDGE_API_KEY")
+config :homelab_mon, :solar_edge,
+  api_key: System.get_env("SOLAR_EDGE_API_KEY") || "",
+  api_endpoint: "https://monitoringapi.solaredge.com"
   
   # For this example you need include a HTTP client required by Swoosh API client.
   # Swoosh supports Hackney and Finch out of the box:

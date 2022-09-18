@@ -1,0 +1,36 @@
+.git/
+.gitignore
+.dockerignore
+.log
+.DS_Store
+*.ez
+*.tar.gz
+*.md
+**/.git
+
+# Generate on crash by the VM
+erl_crash.dump
+
+# Other
+.elixir_ls
+.ts-build
+.yarn
+.yarn-cache
+_build
+deps
+assets
+cover
+cypress
+data
+doc
+docker
+node_modules
+reference
+test
+tmp
+
+Dockerfile
+
+# NOT!
+# _build
+# deps

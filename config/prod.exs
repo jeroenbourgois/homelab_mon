@@ -11,6 +11,9 @@ import Config
 # before starting your production server.
 config :homelab_mon, HomelabMonWeb.Endpoint, cache_static_manifest: "priv/static/cache_manifest.json"
 
+# Using releases
+config :phoenix, :serve_endpoints, true
+
 # Do not print debug messages in production
 config :logger, level: :info
 

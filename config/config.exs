@@ -15,10 +15,11 @@ config :homelab_mon, HomelabMonWeb.Endpoint,
   url: [host: "localhost"],
   render_errors: [view: HomelabMonWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: HomelabMon.PubSub,
+  root: ".",
   live_view: [signing_salt: "8hEwkRBb"]
 
 config :homelab_mon, :solar_edge,
-  api_key: System.get_env("SOLAR_EDGE_API_KEY"),
+  api_key: System.get_env("SOLAR_EDGE_API_KEY") || "",
   api_endpoint: "https://monitoringapi.solaredge.com"
 
 # Configures the mailer
@@ -32,7 +33,7 @@ config :homelab_mon, :solar_edge,
 
 config :homelab_mon, HomelabMon.Mailer, 
   adapter: Swoosh.Adapters.Sendgrid,
-  api_key: System.get_env("SENDGRID_API_KEY")
+  api_key: System.get_env("SENDGRID_API_KEY") || ""
 
 # Configures Elixir's Logger
 config :logger, :console,

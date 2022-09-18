@@ -1,6 +1,4 @@
 defmodule SolarEdge do
-  @conf Application.compile_env(:homelab_mon, :solar_edge)
-
   def get_site_list() do
     action = url("/sites/list.json")
     Req.get!(action).body
@@ -18,6 +16,7 @@ defmodule SolarEdge do
 
   defp url(action), do: api_endpoint() <> action <> "?api_key=" <> api_key()
 
-  defp api_endpoint(), do: @conf[:api_endpoint]
-  defp api_key(), do: @conf[:api_key]
+  defp conf(), do: Application.get_env(:homelab_mon, :solar_edge)
+  defp api_endpoint(), do: conf()[:api_endpoint]
+  defp api_key(), do: conf()[:api_key]
 end

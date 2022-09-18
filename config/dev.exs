@@ -25,6 +25,10 @@ config :homelab_mon, HomelabMonWeb.Endpoint,
   secret_key_base: "DRH9C0yTdjNjNIQUVy/LhO6gFuTeX1GLL4n5+TMgkj9cY5IjcPsyp+ioGnE2gDYg",
   watchers: []
 
+config :homelab_mon, :solar_edge,
+  api_key: System.get_env("SOLAR_EDGE_API_KEY"),
+  api_endpoint: "https://monitoringapi.solaredge.com"
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed
