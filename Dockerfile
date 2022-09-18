@@ -38,7 +38,7 @@ RUN mkdir /app
 WORKDIR /app
 
 # copy release to app container
-COPY --from=build /app/_build/${MIX_ENV}/rel/homelab_mon .
+COPY --from=build /app/_build/${MIX_ENV}/rel/production .
 RUN chown -R nobody: /app
 USER nobody
 
