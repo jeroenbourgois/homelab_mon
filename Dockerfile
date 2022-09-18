@@ -42,5 +42,5 @@ COPY --from=build /app/_build/${MIX_ENV}/rel/production .
 RUN chown -R nobody: /app
 USER nobody
 
-ENTRYPOINT ["bin/homelab_mon"]
+ENTRYPOINT ["bin/production"]
 CMD ["start"]
