@@ -14,10 +14,7 @@ defmodule HomelabMon.MixProject do
       releases: [
         production: [
           include_executables_for: [:unix],
-          applications: [runtime_tools: :permanent],
-          # TODO should not need this, but could not get
-          # it to run on turrim without :(
-          validate_compile_env: false
+          applications: [runtime_tools: :permanent]
         ]
       ],
     ]
