@@ -4,7 +4,7 @@ defmodule HomelabMon.MixProject do
   def project do
     [
       app: :homelab_mon,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix] ++ Mix.compilers(),
@@ -14,7 +14,10 @@ defmodule HomelabMon.MixProject do
       releases: [
         production: [
           include_executables_for: [:unix],
-          applications: [runtime_tools: :permanent]
+          applications: [runtime_tools: :permanent],
+          # TODO should not need this, but could not get
+          # it to run on turrim without :(
+          validate_compile_env: false
         ]
       ],
     ]
