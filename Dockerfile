@@ -27,7 +27,7 @@ RUN mix release
 FROM alpine:3.16 AS app
 
 # install runtime dependencies
-RUN apk add --no-cache openssl ncurses-libs libstdc++
+RUN apk add --no-cache openssl ncurses-libs libstdc++ curl
 
 EXPOSE 4000
 ENV PORT ${PORT:-4000}
