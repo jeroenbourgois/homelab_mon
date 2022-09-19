@@ -43,7 +43,7 @@ COPY --from=build /app/_build/${MIX_ENV}/rel/production .
 RUN chown -R nobody: /app
 USER nobody
 
-HEALTHCHECK --interval=3s --timeout=3s --retries=10 CMD curl --fail -s http://localhost:4000/health || exit 1
+# HEALTHCHECK --interval=3s --timeout=3s --retries=10 CMD curl --fail -s http://localhost:4000/health || exit 1
 
 ENTRYPOINT ["bin/production"]
 CMD ["start"]
