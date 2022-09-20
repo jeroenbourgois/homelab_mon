@@ -19,6 +19,7 @@ defmodule HomelabMonWeb.Router do
 
     get "/health", PageController, :health
     get "/", PageController, :index
+    get "/solar_edge", PageController, :solar_edge
   end
 
   # Other scopes may use custom stacks.

@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  font-family: "Times New Roman", Times, serif;
+}
+
+body {
+  @apply font-serif;
+}
+
 a {
   @apply text-blue-700;
 }
@@ -16,4 +24,17 @@ a {
 
 .dot-nok {
   @apply bg-red-600;
+}
+
+.stats-table td[colspan="2"] {
+  @apply bg-red-300 text-center font-bold;
+  background-color: yellow;
+}
+
+.stats-table td {
+  @apply p-4 border border-gray-500;
+}
+
+.stats-table tr td:first-child {
+  @apply font-bold;
 }

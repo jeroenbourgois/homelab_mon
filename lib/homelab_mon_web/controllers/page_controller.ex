@@ -21,4 +21,9 @@ defmodule HomelabMonWeb.PageController do
       |> json(%{status: %{solar_edge: "down"}})
     end
   end
+
+  def solar_edge(conn, _) do
+    %{solar_edge: solar_edge} = Daemon.get_state()
+    render(conn, :solar_edge, solar_edge: solar_edge)
+  end
 end

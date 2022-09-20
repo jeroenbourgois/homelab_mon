@@ -2,11 +2,7 @@
 
 <ul>
   <li class="flex items-center justify-between">
-    <a href="#">Solar Edge system</a>
-    <details>
-      <summary>Raw Info</summary>
-      <code><%= Jason.encode!(@solar_edge) %></code>
-    </details>
+    <%= link "Solar Edge sysytem", to: Routes.page_path(@conn, :solar_edge) %>
     <div>
       <%= if @solar_edge["status"] == "Active" do %>
       <div class="dot dot-ok"></div>

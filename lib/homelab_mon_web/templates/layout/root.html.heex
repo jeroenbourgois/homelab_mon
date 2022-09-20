@@ -10,11 +10,13 @@
   </head>
   <body class="p-4">
     <header class="flex justify-between border-b pb-2 mb-2">
-      <h1>HLM</h1>
+      <h1>
+      <%= link "HLM", to: Routes.page_path(@conn, :index) %>
+      </h1>
       <nav>
         <ul class="flex">
           <%= if @solar_edge["status"] == "Active" do %>
-          <li class="flex items-center">☀️ <span class="bdot dot-ok mt-1 ml-2">&nbsp;</span></li>
+          <li class="flex items-center">☀️ <span class="dot dot-ok mt-1 ml-2">&nbsp;</span></li>
           <% else %>
           <li class="flex items-center">☀️ <span class="dot dot-nok mt-1 ml-2">&nbsp;</span> ⚠️</li>
           <% end %>
