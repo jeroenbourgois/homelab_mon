@@ -13,7 +13,11 @@
       <h1>HLM</h1>
       <nav>
         <ul class="flex">
-          <li class="flex items-center">☀️ <span class="bg-emerald-300 rounded-full inline-block -mt-1 w-4 h-4 ml-2">&nbsp;</span></li>
+          <%= if @solar_edge["status"] == "Active" do %>
+          <li class="flex items-center">☀️ <span class="bdot dot-ok mt-1 ml-2">&nbsp;</span></li>
+          <% else %>
+          <li class="flex items-center">☀️ <span class="dot dot-nok mt-1 ml-2">&nbsp;</span> ⚠️</li>
+          <% end %>
         </ul>
       </nav>
     </header>

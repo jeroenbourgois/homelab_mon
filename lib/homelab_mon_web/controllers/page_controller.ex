@@ -1,13 +1,14 @@
 defmodule HomelabMonWeb.PageController do
   use HomelabMonWeb, :controller
+  alias HomelabMon.Daemon
 
   def index(conn, _) do
-    solar_edge = SolarEdge.get_main_site()
+    %{solar_edge: solar_edge} = Daemon.get_state()
     render(conn, :index, solar_edge: solar_edge)
   end
 
   def health(conn, _) do
-    solar_edge = SolarEdge.get_main_site()
+    %{solar_edge: solar_edge} = Daemon.get_state()
     status = Map.get(solar_edge, "status", false)
 
     if status == "Active" do

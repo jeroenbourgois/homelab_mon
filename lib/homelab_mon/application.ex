@@ -15,9 +15,9 @@ defmodule HomelabMon.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: HomelabMon.PubSub},
       # Start the Endpoint (http/https)
-      HomelabMonWeb.Endpoint
+      HomelabMonWeb.Endpoint,
       # Start a worker by calling: HomelabMon.Worker.start_link(arg)
-      # {HomelabMon.Worker, arg}
+      {HomelabMon.Daemon, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
