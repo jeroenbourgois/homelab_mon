@@ -16,9 +16,22 @@
       <nav>
         <ul class="flex">
           <%= if @solar_edge["status"] == "Active" do %>
-          <li class="flex items-center">☀️ <span class="dot dot-ok mt-1 ml-2">&nbsp;</span></li>
+          <li class="flex items-center">
+            SE 
+            <span class="dot dot-ok ml-2 inline-block relative" style="top: 2px">&nbsp;</span>
+            <span class="text-xs ml-2">
+            (LU: <%= HomelabMonWeb.PageView.solar_edge_last_updated(@solar_edge) %>)
+            </span>
+          </li>
           <% else %>
-          <li class="flex items-center">☀️ <span class="dot dot-nok mt-1 ml-2">&nbsp;</span> ⚠️</li>
+          <li class="flex items-center">
+            ! SE 
+            <span class="dot dot-nok ml-2 inline-block relative" style="top: 2px">&nbsp;</span>
+            &nbsp;!
+            <span class="text-xs ml-2">
+            (LU: <%= HomelabMonWeb.PageView.solar_edge_last_updated(@solar_edge) %>)
+            </span>
+          </li>
           <% end %>
         </ul>
       </nav>

@@ -1,4 +1,4 @@
-<h1 class="text-2xl">Solar Edge status</h1>
+<h1 class="text-2xl mb-2">Solar Edge status</h1>
 
 <table class="stats-table">
   <thead>
@@ -26,6 +26,14 @@
     <tr>
       <td>Peak Power</td>
       <td><%= @solar_edge["peakPower"]%></td>
+    </tr>
+    <tr>
+      <td>Last Updated (daemon)</td>
+      <td><%= HomelabMonWeb.PageView.solar_edge_last_updated(@solar_edge) %></td>
+    </tr>
+    <tr>
+      <td>Last Updated</td>
+      <td><%= @solar_edge["lastUpdateTime"]%></td>
     </tr>
     <tr>
       <td>Installation Date</td>
