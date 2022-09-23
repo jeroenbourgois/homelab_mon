@@ -38,6 +38,7 @@ defmodule HomelabMon.Daemon do
 
   @impl true
   def handle_info(:run, state) do
+    Logger.info("Update SolarEdge status")
     now = NaiveDateTime.utc_now()
 
     solar_edge = 
@@ -48,6 +49,8 @@ defmodule HomelabMon.Daemon do
           Logger.error(inspect(reason))
           %{"updated_at" => now, "status" => "error"}
       end
+
+    schedule()
 
     if Map.get(solar_edge, "status") == "error" do
       Mailer.deliver!(Emails.solar_edge_down())

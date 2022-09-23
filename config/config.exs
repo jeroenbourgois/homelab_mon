@@ -32,8 +32,9 @@ config :homelab_mon, :solar_edge,
 # config :homelab_mon, HomelabMon.Mailer, adapter: Swoosh.Adapters.Local
 
 config :homelab_mon, HomelabMon.Mailer, 
-  adapter: Swoosh.Adapters.Sendgrid,
-  api_key: System.get_env("SENDGRID_API_KEY") || ""
+  adapter: Swoosh.Adapters.Mailgun,
+  api_key: System.get_env("MAILGUN_API_KEY") || "",
+  domain: System.get_env("MAILGUN_DOMAIN") || ""
 
 # Configures Elixir's Logger
 config :logger, :console,
