@@ -43,6 +43,11 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :logger,
+  backends: [:console, LogflareLogger.HttpBackend],
+  level: :debug,
+  utc_log: true
+
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 

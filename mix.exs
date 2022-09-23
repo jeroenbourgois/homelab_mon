@@ -4,7 +4,7 @@ defmodule HomelabMon.MixProject do
   def project do
     [
       app: :homelab_mon,
-      version: "0.2.3",
+      version: "0.3.0",
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix] ++ Mix.compilers(),
@@ -53,6 +53,7 @@ defmodule HomelabMon.MixProject do
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:req, "~> 0.3.0"},
+      {:logflare_logger_backend, "~> 0.11.0"},
       # {:quantum, "~> 3.0"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},

@@ -2,6 +2,8 @@ defmodule HomelabMonWeb.PageController do
   use HomelabMonWeb, :controller
   alias HomelabMon.Daemon
 
+  require Logger
+
   def index(conn, _) do
     %{solar_edge: solar_edge} = Daemon.get_state()
     render(conn, :index, solar_edge: solar_edge)
