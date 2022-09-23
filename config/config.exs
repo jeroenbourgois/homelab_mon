@@ -7,7 +7,8 @@
 # General application configuration
 import Config
 
-# config :homelab_mon,
+config :homelab_mon,
+  env: Mix.env()
 #   ecto_repos: [HomelabMon.Repo]
 
 # Configures the endpoint
@@ -34,7 +35,8 @@ config :homelab_mon, :solar_edge,
 config :homelab_mon, HomelabMon.Mailer, 
   adapter: Swoosh.Adapters.Mailgun,
   api_key: System.get_env("MAILGUN_API_KEY") || "",
-  domain: System.get_env("MAILGUN_DOMAIN") || ""
+  domain: System.get_env("MAILGUN_DOMAIN") || "",
+  base_url: "https://api.eu.mailgun.net/v3"
 
 # Configures Elixir's Logger
 config :logger, :console,

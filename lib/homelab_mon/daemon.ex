@@ -38,25 +38,28 @@ defmodule HomelabMon.Daemon do
 
   @impl true
   def handle_info(:run, state) do
-    Logger.info("Update SolarEdge status")
-    now = NaiveDateTime.utc_now()
+    if Application.get_env(:homelab_mon, :env) not in ~w(dev test)a do
+      Logger.info("Update SolarEdge status")
+      now = NaiveDateTime.utc_now()
 
-    solar_edge = 
-      case SolarEdge.get_main_site() do 
-        {:ok, data} -> 
-          Map.put(data, "updated_at", now)
-        {:error, reason} -> 
-          Logger.error(inspect(reason))
-          %{"updated_at" => now, "status" => "error"}
+      solar_edge = 
+        case SolarEdge.get_main_site() do 
+          {:ok, data} -> 
+            Map.put(data, "updated_at", now)
+          {:error, reason} -> 
+            Logger.error(inspect(reason))
+            %{"updated_at" => now, "status" => "error"}
+        end
+
+      schedule()
+
+      if Map.get(solar_edge, "status") == "error" do
+        Mailer.deliver!(Emails.solar_edge_down())
       end
-
-    schedule()
-
-    if Map.get(solar_edge, "status") == "error" do
-      Mailer.deliver!(Emails.solar_edge_down())
+      {:noreply, %{state | solar_edge: solar_edge}}
+    else 
+      {:noreply, state}
     end
-
-    {:noreply, %{state | solar_edge: solar_edge}}
   end
 
   def schedule() do
