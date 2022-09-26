@@ -15,7 +15,9 @@ config :homelab_mon, HomelabMonWeb.Endpoint, cache_static_manifest: "priv/static
 config :phoenix, :serve_endpoints, true
 
 # Do not print debug messages in production
-config :logger, level: :info
+config :logger, 
+  level: :info,
+  backends: [:console, LogflareLogger.HttpBackend]
 
 # ## SSL Support
 #

@@ -44,7 +44,7 @@ config :logger, :console,
   metadata: [:request_id]
 
 config :logger,
-  backends: [:console, LogflareLogger.HttpBackend],
+  backends: [:console],
   level: :debug,
   utc_log: true
 
