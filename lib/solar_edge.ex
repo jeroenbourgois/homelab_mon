@@ -5,7 +5,7 @@ defmodule SolarEdge do
     if Application.get_env(:homelab_mon, :env) == :dev do
       {:ok, main_site_list_dev()}
     else 
-      case Req.get(action) do
+      case Req.get(action, [retry: :never]) do
         {:error, reason} -> {:error, reason}
         {:ok, %{body: body}} when is_map(body) -> {:ok, body}
         {:ok, _} -> {:error, :no_json_body}
@@ -23,7 +23,7 @@ defmodule SolarEdge do
 
   def get_site_details(site_id) do
     action = url("/sites/#{site_id}/details.json")
-    case Req.get(action) do
+    case Req.get(action, retry: :never) do
       {:error, reason} -> {:error, reason}
       {:ok, %{body: body}} when is_map(body)-> body
       {:ok, _} -> {:error, :no_json_body}
