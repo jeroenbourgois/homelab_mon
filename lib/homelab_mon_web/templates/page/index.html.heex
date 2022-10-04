@@ -4,7 +4,7 @@
   <li class="flex items-center justify-between">
     <%= link "Solar Edge sysytem", to: Routes.page_path(@conn, :solar_edge) %>
     <div>
-      <%= if @solar_edge["status"] == "Active" do %>
+      <%= if @solar_edge["status"] == "Active" && @solar_edge["isOutdated"] == true do %>
       <div class="dot dot-ok"></div>
       <% else %>
 ⚠️

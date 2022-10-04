@@ -14,15 +14,16 @@ defmodule HomelabMon.Application do
       HomelabMonWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: HomelabMon.PubSub},
+      {HomelabMon.Daemon, []},
       # Start the Endpoint (http/https)
       HomelabMonWeb.Endpoint,
       # Start a worker by calling: HomelabMon.Worker.start_link(arg)
-      {HomelabMon.Daemon, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: HomelabMon.Supervisor]
+
     Supervisor.start_link(children, opts)
   end
 

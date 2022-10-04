@@ -15,7 +15,7 @@
       </h1>
       <nav>
         <ul class="flex">
-          <%= if @solar_edge["status"] == "Active" do %>
+          <%= if @solar_edge["status"] == "Active" && @solar_edge["isOutdated"] == true do %>
           <li class="flex items-center">
             SE 
             <span class="dot dot-ok ml-2 inline-block relative" style="top: 2px">&nbsp;</span>

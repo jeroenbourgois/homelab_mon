@@ -7,6 +7,8 @@
 # General application configuration
 import Config
 
+config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
+
 config :homelab_mon,
   env: Mix.env()
 #   ecto_repos: [HomelabMon.Repo]

@@ -2,15 +2,11 @@ defmodule SolarEdge do
   def get_site_list() do
     action = url("/sites/list.json")
 
-    if Application.get_env(:homelab_mon, :env) == :dev do
-      {:ok, main_site_list_dev()}
-    else 
-      case Req.get(action, [retry: :never]) do
-        {:error, reason} -> {:error, reason}
-        {:ok, %{body: body}} when is_map(body) -> {:ok, body}
-        {:ok, _} -> {:error, :no_json_body}
-      end 
-    end
+    case Req.get(action, [retry: :never]) do
+      {:error, reason} -> {:error, reason}
+      {:ok, %{body: body}} when is_map(body) -> {:ok, body}
+      {:ok, _} -> {:error, :no_json_body}
+    end 
   end
 
   def get_main_site() do
@@ -21,8 +17,25 @@ defmodule SolarEdge do
     end
   end
 
+  def get_main_site_overview() do
+    case get_site_list() do
+      {:error, reason} -> {:error, reason}
+      {:ok, %{"sites" => %{"site" => [%{"id" => site_id} | _]}}} -> get_site_overview(site_id)
+      {:ok, _} -> {:error, :no_json_body}
+    end
+  end
+
   def get_site_details(site_id) do
-    action = url("/sites/#{site_id}/details.json")
+    action = url("/site/#{site_id}/details.json")
+    case Req.get(action, retry: :never) do
+      {:error, reason} -> {:error, reason}
+      {:ok, %{body: body}} when is_map(body)-> body
+      {:ok, _} -> {:error, :no_json_body}
+    end
+  end
+
+  def get_site_overview(site_id) do
+    action = url("/site/#{site_id}/overview.json")
     case Req.get(action, retry: :never) do
       {:error, reason} -> {:error, reason}
       {:ok, %{body: body}} when is_map(body)-> body

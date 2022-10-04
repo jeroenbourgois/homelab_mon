@@ -29,6 +29,9 @@ config :homelab_mon, :solar_edge,
   api_key: System.get_env("SOLAR_EDGE_API_KEY"),
   api_endpoint: "https://monitoringapi.solaredge.com"
 
+config :homelab_mon, HomelabMon.Mailer, 
+  adapter: Swoosh.Adapters.Local
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed

@@ -4,7 +4,7 @@ defmodule HomelabMon.MixProject do
   def project do
     [
       app: :homelab_mon,
-      version: "0.3.0",
+      version: "0.4.0",
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix] ++ Mix.compilers(),
@@ -57,6 +57,7 @@ defmodule HomelabMon.MixProject do
       # {:quantum, "~> 3.0"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
+      {:tzdata, "~> 1.1"},
       {:plug_cowboy, "~> 2.5"}
     ]
   end

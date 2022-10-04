@@ -33,7 +33,11 @@
     </tr>
     <tr>
       <td>Last Updated</td>
+      <%= if @solar_edge["isOutdated"] == false do %>
+      <td style="background: red;"><%= @solar_edge["lastUpdateTime"]%></td>
+      <% else %>
       <td><%= @solar_edge["lastUpdateTime"]%></td>
+      <% end %>
     </tr>
     <tr>
       <td>Installation Date</td>
