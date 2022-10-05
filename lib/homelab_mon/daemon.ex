@@ -89,7 +89,7 @@ defmodule HomelabMon.Daemon do
   end
 
   def lut_outdated?(lut) do
-    one_hour = DateTime.utc_now() |> DateTime.shift_zone!("Europe/Brussels") |> DateTime.add(-1, :hour)
+    one_hour = DateTime.utc_now() |> DateTime.shift_zone!("Europe/Brussels") |> DateTime.add(-6, :hour)
     DateTime.compare(lut, one_hour) == :lt
   end
 end
