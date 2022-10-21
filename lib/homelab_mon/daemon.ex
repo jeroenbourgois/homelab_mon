@@ -90,6 +90,6 @@ defmodule HomelabMon.Daemon do
 
   def lut_outdated?(lut) do
     six_hours_from_now = NaiveDateTime.utc_now() |> NaiveDateTime.add(6, :hour)
-    NaiveDateTime.compare(lut, six_hours_from_now) == :gt
+    NaiveDateTime.compare(lut, six_hours_from_now) == :lt
   end
 end
