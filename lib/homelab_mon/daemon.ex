@@ -82,14 +82,14 @@ defmodule HomelabMon.Daemon do
 
   # we know we are in +2 UTC... we get the lut in Europe/Brussels time from the API
   defp parse_lut(lut) do
-    case DateTime.from_iso8601(lut <> "+0200") do
-      {:ok, parsed_lut, _} -> DateTime.from_naive!(parsed_lut, "Europe/Brussels")
+    case NaiveDateTime.from_iso8601(lut) do
+      {:ok, parsed_lut} -> parsed_lut
       {:error, _reason} -> nil
     end
   end
 
   def lut_outdated?(lut) do
-    one_hour = DateTime.utc_now() |> DateTime.shift_zone!("Europe/Brussels") |> DateTime.add(6, :hour)
-    DateTime.compare(lut, one_hour) == :lt
+    six_hours_from_now = NaiveDateTime.utc_now() |> NaiveDateTime.add(6, :hour)
+    NaiveDateTime.compare(lut, six_hours_from_now) == :gt
   end
 end
