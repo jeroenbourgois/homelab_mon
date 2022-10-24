@@ -1,8 +1,8 @@
 defmodule HomelabMon.Daemon do
   use GenServer 
 
-  alias HomelabMon.Mailer
-  alias HomelabMon.Emails
+  # alias HomelabMon.Mailer
+  # alias HomelabMon.Emails
 
   require Logger
 
@@ -65,7 +65,7 @@ defmodule HomelabMon.Daemon do
     outdated? = lut_outdated?(solar_edge["lastUpdateTime"])
 
     if error? || outdated? do
-      Mailer.deliver!(Emails.solar_edge_down())
+      # Mailer.deliver!(Emails.solar_edge_down())
     end
 
     solar_edge = Map.put(solar_edge, "isOutdated", outdated?)
